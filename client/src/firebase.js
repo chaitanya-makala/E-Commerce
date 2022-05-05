@@ -2,7 +2,6 @@
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import { initializeApp } from "firebase/app";
 
 //web app's Firebase configuration
 const firebaseConfig = {
