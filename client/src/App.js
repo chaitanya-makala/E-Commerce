@@ -6,6 +6,7 @@ import { Route, Switch } from "react-router-dom";
 import Header from "./components/nav/Header";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import RegisterComplete from "./pages/auth/RegisterComplete";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
+        <Route exact path="/register/complete" component={RegisterComplete} />
       </Switch>
     </>
   );

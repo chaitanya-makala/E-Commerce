@@ -40,6 +40,7 @@ const Register = () => {
           onChange={handleChange}
           autoFocus
         />
+        <br />
         <button type="submit" className="btn btn-raised">
           Register
         </button>
