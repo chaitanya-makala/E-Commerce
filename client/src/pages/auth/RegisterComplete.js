@@ -34,7 +34,6 @@ const RegisterComplete = ({ history }) => {
         await user.updatePassword(password);
         const idTokenResult = await user.getIdTokenResult();
         toast.success("User registered successfully!");
-        // setTimeout(history.push("/"), 1000);
         history.push("/");
       }
     } catch (err) {
