@@ -44,7 +44,7 @@ const Header = () => {
         <Item key="setting:2" icon={<AppstoreOutlined />}>
           Option 2
         </Item>
-        <Item icon={<LogoutOutlined />} onClick={logout}>
+        <Item key="logout" icon={<LogoutOutlined />} onClick={logout}>
           Logout
         </Item>
       </SubMenu>
