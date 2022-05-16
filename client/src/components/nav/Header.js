@@ -10,7 +10,7 @@ import {
 import { Link, useHistory } from "react-router-dom";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const { Item, SubMenu } = Menu;
 
@@ -20,6 +20,7 @@ const Header = () => {
     setCurrent(event.key);
   };
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => ({ ...state }));
   const history = useHistory();
 
   const logout = () => {
@@ -37,23 +38,38 @@ const Header = () => {
         <Link to="/">Home</Link>
       </Item>
 
-      <SubMenu key="SubMenu" title="User" icon={<SettingOutlined />}>
-        <Item key="setting:1" icon={<AppstoreOutlined />}>
-          Option 1
+      {user && (
+        <SubMenu
+          key="SubMenu"
+          title={user.email && user.email.split("@")[0]}
+          icon={<SettingOutlined />}
+          style={{ marginLeft: "auto" }}
+        >
+          <Item key="setting:1" icon={<AppstoreOutlined />}>
+            Option 1
+          </Item>
+          <Item key="setting:2" icon={<AppstoreOutlined />}>
+            Option 2
+          </Item>
+          <Item key="logout" icon={<LogoutOutlined />} onClick={logout}>
+            Logout
+          </Item>
+        </SubMenu>
+      )}
+      {!user && (
+        <Item
+          style={{ marginLeft: "auto" }}
+          key="login"
+          icon={<UserOutlined />}
+        >
+          <Link to="/login">Login</Link>
         </Item>
-        <Item key="setting:2" icon={<AppstoreOutlined />}>
-          Option 2
+      )}
+      {!user && (
+        <Item key="register" icon={<UserAddOutlined />}>
+          <Link to="/register">Register</Link>
         </Item>
-        <Item key="logout" icon={<LogoutOutlined />} onClick={logout}>
-          Logout
-        </Item>
-      </SubMenu>
-      <Item style={{ marginLeft: "auto" }} key="login" icon={<UserOutlined />}>
-        <Link to="/login">Login</Link>
-      </Item>
-      <Item key="register" icon={<UserAddOutlined />}>
-        <Link to="/register">Register</Link>
-      </Item>
+      )}
     </Menu>
   );
 };
