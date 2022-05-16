@@ -11,6 +11,7 @@ import { Link, useHistory } from "react-router-dom";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const { Item, SubMenu } = Menu;
 
@@ -29,7 +30,8 @@ const Header = () => {
       type: "LOGOUT",
       payload: null,
     });
-    history.push("/login");
+    toast.success("Logged out successfully");
+    history.push("/");
   };
 
   return (
